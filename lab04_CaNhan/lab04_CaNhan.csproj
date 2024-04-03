@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{633DEFD7-95F5-43A0-820C-96061BD39BE9}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>lab03_Nhom</RootNamespace>
-    <AssemblyName>lab03_Nhom</AssemblyName>
+    <ProjectGuid>{19A1150A-7200-4138-9003-EA99F80244D2}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>lab04_CaNhan</RootNamespace>
+    <AssemblyName>lab04_CaNhan</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -16,7 +16,7 @@
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -159,66 +159,27 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddScoreForm.cs">
+    <Compile Include="Crypto.cs" />
+    <Compile Include="LoginFrom.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddScoreForm.Designer.cs">
-      <DependentUpon>AddScoreForm.cs</DependentUpon>
+    <Compile Include="LoginFrom.Designer.cs">
+      <DependentUpon>LoginFrom.cs</DependentUpon>
     </Compile>
-    <Compile Include="Cryptography.cs" />
-    <Compile Include="EditScore.cs">
+    <Compile Include="NVForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditScore.Designer.cs">
-      <DependentUpon>EditScore.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EditSvForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditSvForm.Designer.cs">
-      <DependentUpon>EditSvForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="NVForm.Designer.cs">
+      <DependentUpon>NVForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScoreList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ScoreList.Designer.cs">
-      <DependentUpon>ScoreList.cs</DependentUpon>
-    </Compile>
     <Compile Include="SqlData.cs" />
-    <Compile Include="SvForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SvForm.Designer.cs">
-      <DependentUpon>SvForm.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="AddScoreForm.resx">
-      <DependentUpon>AddScoreForm.cs</DependentUpon>
+    <EmbeddedResource Include="LoginFrom.resx">
+      <DependentUpon>LoginFrom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditScore.resx">
-      <DependentUpon>EditScore.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="EditSvForm.resx">
-      <DependentUpon>EditSvForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="NVForm.resx">
+      <DependentUpon>NVForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -229,12 +190,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ScoreList.resx">
-      <DependentUpon>ScoreList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SvForm.resx">
-      <DependentUpon>SvForm.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

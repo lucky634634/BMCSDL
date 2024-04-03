@@ -66,7 +66,7 @@ namespace lab03_Nhom
                     SqlData.Instance.password = passwordText.Text;
                     Hide();
                     form2 = new Form2();
-                    form2.FormClosed += delegate { Show(); };
+                    form2.FormClosed += delegate { Show(); SqlData.Instance.id = ""; SqlData.Instance.username = ""; SqlData.Instance.password = ""; };
                     form2.ShowDialog();
                 }
                 else
