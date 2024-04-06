@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO;
 
-namespace lab04_CaNhan
+namespace lab04_Nhom
 {
     public class Crypto
     {
