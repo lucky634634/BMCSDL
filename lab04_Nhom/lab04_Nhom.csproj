@@ -156,11 +156,20 @@
     <Compile Include="LoginFrom.Designer.cs">
       <DependentUpon>LoginFrom.cs</DependentUpon>
     </Compile>
+    <Compile Include="NVForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NVForm.Designer.cs">
+      <DependentUpon>NVForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlData.cs" />
     <EmbeddedResource Include="LoginFrom.resx">
       <DependentUpon>LoginFrom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NVForm.resx">
+      <DependentUpon>NVForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
