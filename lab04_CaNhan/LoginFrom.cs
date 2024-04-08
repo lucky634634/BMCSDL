@@ -57,14 +57,14 @@ namespace lab04_CaNhan
                 }
                 password = password.ToLower();
                 password = password.Substring(2);
-                if (role == "NV" && password == Crypto.GetSHA1Hash(passwordTextBox.Text))
+                if (role == "NV" && password == Cryptography.GetSHA1Hash(passwordTextBox.Text))
                 {
                     var nv = new NVForm();
                     nv.Show();
                     this.Hide();
                     nv.Disposed += (s, ev) => this.Show();
                 }
-                else if (role == "SV" && password == Crypto.GetMd5Hash(passwordTextBox.Text))
+                else if (role == "SV" && password == Cryptography.GetMd5Hash(passwordTextBox.Text))
                 {
                     var nv = new NVForm();
                     nv.Show();

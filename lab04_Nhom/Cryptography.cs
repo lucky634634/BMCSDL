@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO;
+using Microsoft.Identity.Client.Kerberos;
 
 namespace lab04_Nhom
 {
-    public class Crypto
+    public class Cryptography
     {
         public static string GetSHA1Hash(string str)
         {
@@ -42,17 +43,29 @@ namespace lab04_Nhom
             }
         }
 
-        public static string GetAESEncrypt(string text)
+        public static string GetAESEncrypt(string text, string key)
         {
-            byte[] key = Encoding.UTF8.GetBytes("21127077");
-            key = SHA256.Create().ComputeHash(key);
+            byte[] keyBytes = Encoding.UTF8.GetBytes(key);
+            if (keyBytes.Length < 32)
+            {
+                int diff = 32 - keyBytes.Length;
+                for (int i = 0; i < diff; i++)
+                {
+                    keyBytes = keyBytes.Concat(new byte[] { 0 }).ToArray();
+                }
+            }
+            else
+            {
+                keyBytes = keyBytes.Take(32).ToArray();
+            }
             byte[] encrypted;
 
             using (Aes aes = Aes.Create())
             {
                 aes.Mode = CipherMode.CBC;
                 aes.KeySize = 256;
-                aes.Key = key;
+                aes.Padding = PaddingMode.PKCS7;
+                aes.Key = keyBytes;
                 byte[] iv = new byte[aes.BlockSize / 8];
                 aes.IV = iv;
 
@@ -72,17 +85,29 @@ namespace lab04_Nhom
             return BitConverter.ToString(encrypted).Replace("-", "");
         }
 
-        public static string GetAESDecrypt(string text)
+        public static string GetAESDecrypt(string text, string key)
         {
-            byte[] key = Encoding.UTF8.GetBytes("21127077");
-            key = SHA256.Create().ComputeHash(key);
+            byte[] keyBytes = Encoding.UTF8.GetBytes("21127077");
+            if (keyBytes.Length < 32)
+            {
+                int diff = 32 - keyBytes.Length;
+                for (int i = 0; i < diff; i++)
+                {
+                    keyBytes = keyBytes.Concat(new byte[] { 0 }).ToArray();
+                }
+            }
+            else
+            {
+                keyBytes = keyBytes.Take(32).ToArray();
+            }
             byte[] buffer = StringToByteArray(text);
             string decrypted = string.Empty;
             using (Aes aes = Aes.Create())
             {
                 aes.Mode = CipherMode.CBC;
+                aes.Padding = PaddingMode.PKCS7;
                 aes.KeySize = 256;
-                aes.Key = key;
+                aes.Key = keyBytes;
                 byte[] iv = new byte[aes.BlockSize / 8];
                 aes.IV = iv;
 

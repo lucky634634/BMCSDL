@@ -71,7 +71,7 @@ namespace lab04_CaNhan
                                 string email = reader.GetString(2);
                                 string luong = reader.GetValue(3) == DBNull.Value ? "0" : reader.GetString(3).Substring(2);
 
-                                nvDataList.Rows.Add(manv, hoten, email, Crypto.GetAESDecrypt(luong));
+                                nvDataList.Rows.Add(manv, hoten, email, Cryptography.GetAESDecrypt(luong, "21127077"));
                             }
                         }
                     }
@@ -119,9 +119,9 @@ namespace lab04_CaNhan
                             cmd.Parameters.AddWithValue("@MANV", manvText.Text);
                             cmd.Parameters.AddWithValue("@HOTEN", hotenText.Text);
                             cmd.Parameters.AddWithValue("@EMAIL", emailText.Text);
-                            cmd.Parameters.AddWithValue("@LUONG", "0x" + Crypto.GetAESEncrypt(luongText.Text));
+                            cmd.Parameters.AddWithValue("@LUONG", "0x" + Cryptography.GetAESEncrypt(luongText.Text, "21127077"));
                             cmd.Parameters.AddWithValue("@TENDN", tendnText.Text);
-                            cmd.Parameters.AddWithValue("@MATKHAU", "0x" + Crypto.GetSHA1Hash(mkText.Text));
+                            cmd.Parameters.AddWithValue("@MATKHAU", "0x" + Cryptography.GetSHA1Hash(mkText.Text));
                             cmd.ExecuteNonQuery();
                         }
                     }
@@ -147,9 +147,9 @@ namespace lab04_CaNhan
                             cmd.Parameters.AddWithValue("@MANV", manvText.Text);
                             cmd.Parameters.AddWithValue("@HOTEN", hotenText.Text);
                             cmd.Parameters.AddWithValue("@EMAIL", emailText.Text);
-                            cmd.Parameters.AddWithValue("@LUONG", "0x" + Crypto.GetAESEncrypt(luongText.Text));
+                            cmd.Parameters.AddWithValue("@LUONG", "0x" + Cryptography.GetAESEncrypt(luongText.Text, "21127077"));
                             cmd.Parameters.AddWithValue("@TENDN", tendnText.Text);
-                            cmd.Parameters.AddWithValue("@MATKHAU", "0x" + Crypto.GetSHA1Hash(mkText.Text));
+                            cmd.Parameters.AddWithValue("@MATKHAU", "0x" + Cryptography.GetSHA1Hash(mkText.Text));
                             cmd.ExecuteNonQuery();
                         }
                     }
@@ -210,7 +210,7 @@ namespace lab04_CaNhan
                                 manvText.Text = reader.GetString(0);
                                 hotenText.Text = reader.GetString(1);
                                 emailText.Text = reader.GetValue(2) == DBNull.Value ? "" : reader.GetString(2);
-                                luongText.Text = reader.GetValue(3) == DBNull.Value ? "0" : Crypto.GetAESDecrypt(reader.GetString(3).Substring(2));
+                                luongText.Text = reader.GetValue(3) == DBNull.Value ? "0" : Cryptography.GetAESDecrypt(reader.GetString(3).Substring(2), "21127077");
                                 tendnText.Text = reader.GetString(4);
                                 mkText.Text = "";
                             }
