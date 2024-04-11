@@ -26,5 +26,9 @@ namespace lab04_Nhom
             connection = new SqlConnection(builder.ConnectionString);
             connection.Open();
         }
+
+        public string id;
+        public string login;
+        public string password;
     }
 }

@@ -56,7 +56,7 @@ namespace lab04_Nhom
             nvDataList.Rows.Clear();
             try
             {
-                string sql = @"EXEC SP_SEL_ENCRYPT_NHANVIEN";
+                string sql = @"EXEC SP_SEL_PUBLIC_ENCRYPT_NHANVIEN";
                 using (SqlCommand cmd = new SqlCommand(sql, SqlData.Instance.connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -68,9 +68,9 @@ namespace lab04_Nhom
                                 string manv = reader.GetString(0);
                                 string hoten = reader.GetString(1);
                                 string email = reader.GetString(2);
-                                string luong = reader.GetValue(3) == DBNull.Value ? "0" : reader.GetString(3).Substring(2);
+                                string luong = reader.GetValue(3) == DBNull.Value ? "0" : reader.GetString(3);
 
-                                nvDataList.Rows.Add(manv, hoten, email, Cryptography.GetAESDecrypt(luong, "21127077"));
+                                nvDataList.Rows.Add(manv, hoten, email, luong);
                             }
                         }
                     }

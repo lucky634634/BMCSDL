@@ -20,7 +20,7 @@ namespace lab04_Nhom
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            string username = "";
+            string id = "";
             string password = "";
             string role = "";
             if (usernameTextBox.Text == "" || passwordTextBox.Text == "")
@@ -49,7 +49,7 @@ namespace lab04_Nhom
                             while (reader.Read())
                             {
                                 role = reader.GetString(0);
-                                username = reader.GetString(1);
+                                id = reader.GetString(1);
                                 password = reader.GetString(2);
                             }
                         }
@@ -57,19 +57,26 @@ namespace lab04_Nhom
                 }
                 password = password.ToLower();
                 password = password.Substring(2);
-                if (role == "NV" && password == Cryptography.GetSHA1Hash(passwordTextBox.Text))
+                if (role == "" || id == "" || password == "")
                 {
-                    var nv = new NVForm();
-                    nv.Show();
-                    this.Hide();
-                    nv.Disposed += (s, ev) => this.Show();
+                    MessageBox.Show("Tên đăng nhập hoặc mật khẩu không hợp lệ");
+                }
+                else if (role == "NV" && password == Cryptography.GetSHA1Hash(passwordTextBox.Text))
+                {
+                    var option = new OptionForm();
+                    option.Show();
+                    Hide();
+                    option.Disposed += (s, ev) => Show();
                 }
                 else if (role == "SV" && password == Cryptography.GetMd5Hash(passwordTextBox.Text))
                 {
-                    var nv = new NVForm();
-                    nv.Show();
-                    this.Hide();
-                    nv.Disposed += (s, ev) => this.Show();
+
+                    SqlData.Instance.id = id;
+                    SqlData.Instance.password = password;
+                    var nvForm = new NVForm();
+                    nvForm.Show();
+                    Hide();
+                    nvForm.Disposed += (s, ev) => Show();
                 }
                 else
                 {

@@ -49,6 +49,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.publicKeyText = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.themButton = new System.Windows.Forms.Button();
             this.xoaButton = new System.Windows.Forms.Button();
@@ -179,12 +181,15 @@
             this.tableLayoutPanel1.Controls.Add(this.label4, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label5, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label6, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.publicKeyText, 1, 3);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(-3, 29);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1181, 177);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -192,7 +197,7 @@
             // 
             this.mkText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mkText.Enabled = false;
-            this.mkText.Location = new System.Drawing.Point(711, 121);
+            this.mkText.Location = new System.Drawing.Point(711, 91);
             this.mkText.Name = "mkText";
             this.mkText.Size = new System.Drawing.Size(467, 21);
             this.mkText.TabIndex = 6;
@@ -203,7 +208,7 @@
             // 
             this.tendnText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tendnText.Enabled = false;
-            this.tendnText.Location = new System.Drawing.Point(121, 121);
+            this.tendnText.Location = new System.Drawing.Point(121, 91);
             this.tendnText.Name = "tendnText";
             this.tendnText.Size = new System.Drawing.Size(466, 21);
             this.tendnText.TabIndex = 5;
@@ -213,7 +218,7 @@
             // 
             this.luongText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.luongText.Enabled = false;
-            this.luongText.Location = new System.Drawing.Point(711, 62);
+            this.luongText.Location = new System.Drawing.Point(711, 47);
             this.luongText.Name = "luongText";
             this.luongText.Size = new System.Drawing.Size(467, 21);
             this.luongText.TabIndex = 4;
@@ -223,7 +228,7 @@
             // 
             this.emailText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.emailText.Enabled = false;
-            this.emailText.Location = new System.Drawing.Point(121, 62);
+            this.emailText.Location = new System.Drawing.Point(121, 47);
             this.emailText.Name = "emailText";
             this.emailText.Size = new System.Drawing.Size(466, 21);
             this.emailText.TabIndex = 3;
@@ -247,7 +252,7 @@
             this.label1.Location = new System.Drawing.Point(5, 5);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 54);
+            this.label1.Size = new System.Drawing.Size(108, 39);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã NV";
             // 
@@ -266,10 +271,10 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Location = new System.Drawing.Point(5, 64);
+            this.label2.Location = new System.Drawing.Point(5, 49);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 54);
+            this.label2.Size = new System.Drawing.Size(108, 39);
             this.label2.TabIndex = 0;
             this.label2.Text = "Email";
             // 
@@ -278,10 +283,10 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Location = new System.Drawing.Point(5, 123);
+            this.label3.Location = new System.Drawing.Point(5, 93);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 54);
+            this.label3.Size = new System.Drawing.Size(108, 39);
             this.label3.TabIndex = 0;
             this.label3.Text = "Tên đăng nhập";
             // 
@@ -293,7 +298,7 @@
             this.label4.Location = new System.Drawing.Point(595, 5);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 54);
+            this.label4.Size = new System.Drawing.Size(108, 39);
             this.label4.TabIndex = 0;
             this.label4.Text = "Họ tên";
             // 
@@ -302,10 +307,10 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.Location = new System.Drawing.Point(595, 64);
+            this.label5.Location = new System.Drawing.Point(595, 49);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(108, 54);
+            this.label5.Size = new System.Drawing.Size(108, 39);
             this.label5.TabIndex = 0;
             this.label5.Text = "Lương";
             // 
@@ -315,12 +320,28 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(595, 123);
+            this.label6.Location = new System.Drawing.Point(595, 93);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(108, 54);
+            this.label6.Size = new System.Drawing.Size(108, 39);
             this.label6.TabIndex = 0;
             this.label6.Text = "Mật khẩu";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 132);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(62, 15);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Public key";
+            // 
+            // publicKeyText
+            // 
+            this.publicKeyText.Location = new System.Drawing.Point(121, 135);
+            this.publicKeyText.Name = "publicKeyText";
+            this.publicKeyText.Size = new System.Drawing.Size(466, 21);
+            this.publicKeyText.TabIndex = 8;
             // 
             // flowLayoutPanel1
             // 
@@ -423,10 +444,6 @@
         private System.Windows.Forms.Label title;
         private System.Windows.Forms.DataGridView nvDataList;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn manv;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hoten;
-        private System.Windows.Forms.DataGridViewTextBoxColumn email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn luong;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button themButton;
         private System.Windows.Forms.Button xoaButton;
@@ -446,5 +463,11 @@
         private System.Windows.Forms.TextBox emailText;
         private System.Windows.Forms.TextBox hotenText;
         private System.Windows.Forms.Button lmButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn manv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hoten;
+        private System.Windows.Forms.DataGridViewTextBoxColumn email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn luong;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox publicKeyText;
     }
 }
