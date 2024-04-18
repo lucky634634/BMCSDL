@@ -34,10 +34,10 @@
             this.tenhp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sotc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.diemThi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mahpText = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.mahpText = new System.Windows.Forms.TextBox();
             this.scoreBox = new System.Windows.Forms.NumericUpDown();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.addButton = new System.Windows.Forms.Button();
@@ -83,6 +83,7 @@
             this.scoreTable.Location = new System.Drawing.Point(3, 183);
             this.scoreTable.Name = "scoreTable";
             this.scoreTable.ReadOnly = true;
+            this.scoreTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.scoreTable.Size = new System.Drawing.Size(794, 219);
             this.scoreTable.TabIndex = 0;
             // 
@@ -112,31 +113,6 @@
             this.diemThi.Name = "diemThi";
             this.diemThi.ReadOnly = true;
             // 
-            // mahpText
-            // 
-            this.mahpText.Location = new System.Drawing.Point(82, 3);
-            this.mahpText.Name = "mahpText";
-            this.mahpText.Size = new System.Drawing.Size(311, 20);
-            this.mahpText.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(399, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Điểm";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã học phần";
-            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 4;
@@ -153,9 +129,34 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 174F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(794, 174);
             this.tableLayoutPanel2.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Mã học phần";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(399, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(31, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Điểm";
+            // 
+            // mahpText
+            // 
+            this.mahpText.Location = new System.Drawing.Point(82, 3);
+            this.mahpText.Name = "mahpText";
+            this.mahpText.Size = new System.Drawing.Size(311, 20);
+            this.mahpText.TabIndex = 2;
             // 
             // scoreBox
             // 

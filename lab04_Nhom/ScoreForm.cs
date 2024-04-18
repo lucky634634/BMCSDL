@@ -206,6 +206,7 @@ namespace lab04_Nhom
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
+            LoadData();
         }
     }
 }
