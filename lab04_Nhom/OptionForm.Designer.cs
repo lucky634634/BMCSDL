@@ -42,6 +42,7 @@
             this.ClassButton.TabIndex = 0;
             this.ClassButton.Text = "Màn hình quản lý lớp học";
             this.ClassButton.UseVisualStyleBackColor = true;
+            this.ClassButton.Click += new System.EventHandler(this.ClassButton_Click);
             // 
             // nvButton
             // 

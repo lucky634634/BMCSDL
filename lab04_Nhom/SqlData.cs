@@ -1,9 +1,11 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace lab04_Nhom
 {
@@ -19,16 +21,28 @@ namespace lab04_Nhom
             InitialCatalog = "QLSVNhom",
             TrustServerCertificate = true
         };
-        public SqlConnection connection { get; private set; }
+        private SqlConnection _connection;
+        public SqlConnection connection
+        {
+            get
+            {
+                if (_connection == null)
+                {
+                    _connection = new SqlConnection(builder.ConnectionString);
+                }
+                if (_connection.State != System.Data.ConnectionState.Open)
+                    _connection.Open();
+                return _connection;
+            }
+        }
 
         private SqlData()
         {
-            connection = new SqlConnection(builder.ConnectionString);
-            connection.Open();
+
         }
 
+
         public string id;
-        public string login;
         public string password;
     }
 }

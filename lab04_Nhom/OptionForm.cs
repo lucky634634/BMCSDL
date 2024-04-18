@@ -24,5 +24,13 @@ namespace lab04_Nhom
             form.Show();
             form.Disposed += (s, args) => Show();
         }
+
+        private void ClassButton_Click(object sender, EventArgs e)
+        {
+            var form = new ClassForm();
+            Hide();
+            form.Show();
+            form.Disposed += (s, args) => Show();
+        }
     }
 }

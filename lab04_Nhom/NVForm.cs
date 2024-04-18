@@ -14,6 +14,7 @@ namespace lab04_Nhom
     public partial class NVForm : Form
     {
         private string mode = "";
+        private string pubKey = "";
 
         public NVForm()
         {
@@ -56,7 +57,9 @@ namespace lab04_Nhom
             nvDataList.Rows.Clear();
             try
             {
-                string sql = @"EXEC SP_SEL_PUBLIC_ENCRYPT_NHANVIEN";
+                string sql = @"
+                    SELECT MANV, HOTEN, EMAIL, PUBKEY,CONVERT(VARCHAR(MAX), LUONG, 1)
+                    FROM NHANVIEN";
                 using (SqlCommand cmd = new SqlCommand(sql, SqlData.Instance.connection))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -68,7 +71,8 @@ namespace lab04_Nhom
                                 string manv = reader.GetString(0);
                                 string hoten = reader.GetString(1);
                                 string email = reader.GetString(2);
-                                string luong = reader.GetValue(3) == DBNull.Value ? "0" : reader.GetString(3);
+                                string pubKey = reader.GetString(3);
+                                string luong = reader.GetValue(4) == DBNull.Value ? "0" : Cryptography.GetRSADecrypt(reader.GetString(4).Substring(2), pubKey);
 
                                 nvDataList.Rows.Add(manv, hoten, email, luong);
                             }
@@ -110,17 +114,19 @@ namespace lab04_Nhom
                 }
                 else
                 {
+                    pubKey = Cryptography.GetPublicKey();
                     try
                     {
-                        string sql = @"EXEC SP_INS_ENCRYPT_NHANVIEN @MANV, @HOTEN, @EMAIL, @LUONG, @TENDN, @MATKHAU";
+                        string sql = @"EXEC SP_INS_PUBLIC_ENCRYPT_NHANVIEN @MANV, @HOTEN, @EMAIL, @LUONG, @TENDN, @MATKHAU, @PUBKEY";
                         using (SqlCommand cmd = new SqlCommand(sql, SqlData.Instance.connection))
                         {
                             cmd.Parameters.AddWithValue("@MANV", manvText.Text);
                             cmd.Parameters.AddWithValue("@HOTEN", hotenText.Text);
                             cmd.Parameters.AddWithValue("@EMAIL", emailText.Text);
-                            cmd.Parameters.AddWithValue("@LUONG", "0x" + Cryptography.GetAESEncrypt(luongText.Text, "21127077"));
+                            cmd.Parameters.AddWithValue("@LUONG", "0x" + Cryptography.GetRSAEncrypt(luongText.Text, pubKey));
                             cmd.Parameters.AddWithValue("@TENDN", tendnText.Text);
                             cmd.Parameters.AddWithValue("@MATKHAU", "0x" + Cryptography.GetSHA1Hash(mkText.Text));
+                            cmd.Parameters.AddWithValue("@PUBKEY", pubKey);
                             cmd.ExecuteNonQuery();
                         }
                     }
@@ -138,17 +144,25 @@ namespace lab04_Nhom
                 }
                 else
                 {
+                    if (!Cryptography.CheckKey(pubKey))
+                    {
+                        pubKey = Cryptography.GetPublicKey();
+                    }
                     try
                     {
-                        string sql = @"EXEC SP_UPD_ENCRYPT_NHANVIEN @MANV, @HOTEN, @EMAIL, @LUONG, @TENDN, @MATKHAU";
+                        string sql = @"
+                            UPDATE NHANVIEN 
+                            SET HOTEN = @HOTEN, EMAIL = @EMAIL, LUONG = @LUONG, TENDN = @TENDN, MATKHAU = @MATKHAU, PUBKEY = @PUBKEY  
+                            WHERE MANV = @MANV";
                         using (SqlCommand cmd = new SqlCommand(sql, SqlData.Instance.connection))
                         {
                             cmd.Parameters.AddWithValue("@MANV", manvText.Text);
                             cmd.Parameters.AddWithValue("@HOTEN", hotenText.Text);
                             cmd.Parameters.AddWithValue("@EMAIL", emailText.Text);
-                            cmd.Parameters.AddWithValue("@LUONG", "0x" + Cryptography.GetAESEncrypt(luongText.Text, "21127077"));
+                            cmd.Parameters.AddWithValue("@LUONG", Encoding.UTF8.GetBytes("0x" + Cryptography.GetRSAEncrypt(luongText.Text, pubKey)));
                             cmd.Parameters.AddWithValue("@TENDN", tendnText.Text);
-                            cmd.Parameters.AddWithValue("@MATKHAU", "0x" + Cryptography.GetSHA1Hash(mkText.Text));
+                            cmd.Parameters.AddWithValue("@MATKHAU", Encoding.UTF8.GetBytes("0x" + Cryptography.GetSHA1Hash(mkText.Text)));
+                            cmd.Parameters.AddWithValue("@PUBKEY", pubKey);
                             cmd.ExecuteNonQuery();
                         }
                     }
@@ -170,7 +184,7 @@ namespace lab04_Nhom
             if (nvDataList.SelectedRows.Count > 0)
             {
                 string manv = nvDataList.SelectedRows[0].Cells[0].Value.ToString();
-                string sql = @"EXEC SP_DEL_ENCRYPT_NHANVIEN @MANV";
+                string sql = @"DELETE FROM NHANVIEN WHERE MANV = @MANV";
                 try
                 {
                     using (SqlCommand cmd = new SqlCommand(sql, SqlData.Instance.connection))
@@ -196,7 +210,7 @@ namespace lab04_Nhom
 
 
                 string manv = nvDataList.SelectedRows[0].Cells[0].Value.ToString();
-                string sql = @"EXEC SP_SEL_ENCRYPT_NHANVIEN_MANV @MANV";
+                string sql = @"SELECT MANV, HOTEN, EMAIL, CONVERT(VARCHAR(MAX), LUONG, 1), TENDN, CONVERT(VARCHAR(MAX), MATKHAU, 1), PUBKEY FROM NHANVIEN WHERE MANV = @MANV";
                 try
                 {
                     using (SqlCommand cmd = new SqlCommand(sql, SqlData.Instance.connection))
@@ -209,9 +223,14 @@ namespace lab04_Nhom
                                 manvText.Text = reader.GetString(0);
                                 hotenText.Text = reader.GetString(1);
                                 emailText.Text = reader.GetValue(2) == DBNull.Value ? "" : reader.GetString(2);
-                                luongText.Text = reader.GetValue(3) == DBNull.Value ? "0" : Cryptography.GetAESDecrypt(reader.GetString(3).Substring(2), "21127077");
+                                luongText.Text = reader.GetValue(3) == DBNull.Value ? "0" : Cryptography.GetRSADecrypt(reader.GetString(3).Substring(2), pubKey);
                                 tendnText.Text = reader.GetString(4);
                                 mkText.Text = "";
+                                pubKey = reader.GetValue(6) == DBNull.Value ? "" : reader.GetString(6);
+                                if (!Cryptography.CheckKey(pubKey))
+                                {
+                                    pubKey = Cryptography.GetPublicKey();
+                                }
                             }
                         }
                     }

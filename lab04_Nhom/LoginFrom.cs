@@ -63,6 +63,8 @@ namespace lab04_Nhom
                 }
                 else if (role == "NV" && password == Cryptography.GetSHA1Hash(passwordTextBox.Text))
                 {
+                    SqlData.Instance.id = id;
+                    SqlData.Instance.password = password;
                     var option = new OptionForm();
                     option.Show();
                     Hide();
