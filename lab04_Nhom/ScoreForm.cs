@@ -65,6 +65,7 @@ namespace lab04_Nhom
         {
             GetPublicKey();
             LoadData();
+            DisableInput();
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -86,7 +87,7 @@ namespace lab04_Nhom
             mahpText.Enabled = false;
             mahpText.Clear();
             scoreBox.Enabled = false;
-            scoreBox.ResetText();
+            scoreBox.Value = 0;
         }
 
         private void editButton_Click(object sender, EventArgs e)
