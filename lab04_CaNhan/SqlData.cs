@@ -19,12 +19,16 @@ namespace lab04_CaNhan
             InitialCatalog = "QLSV",
             TrustServerCertificate = true
         };
-        public SqlConnection connection { get; private set; }
-
-        private SqlData()
+        private SqlConnection _connection = null;
+        public SqlConnection connection
         {
-            connection = new SqlConnection(builder.ConnectionString);
-            connection.Open();
+            get
+            {
+                _connection = new SqlConnection(builder.ConnectionString);
+                if (_connection == null || _connection.State == System.Data.ConnectionState.Closed)
+                    _connection.Open();
+                return _connection;
+            }
         }
     }
 }
